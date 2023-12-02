@@ -10,8 +10,8 @@ namespace QuizMaker.Domain.Quiz
 {
     public class Quiz
     {
-        public Guid Id { get; set; }
-        public Guid OwnerId { get; set; }
+        public Guid Id { get; }
+        public Guid OwnerId { get; }
         public string Title { get; private set; }
         public int? Duration { get; private set; }
         public DateTime? StartDate { get; private set; }
@@ -86,11 +86,11 @@ namespace QuizMaker.Domain.Quiz
         }
         public void SetShowStatsAfterTheEnd(bool showStatsAfterTheEnd)
         {
-            ShowStatsAfterTheEnd=showStatsAfterTheEnd;
+            ShowStatsAfterTheEnd = showStatsAfterTheEnd;
         }
         public void SetShowResultPageAfterTheEnd(bool showResultPageAfterTheEnd)
         {
-            ShowResultPageAfterTheEnd= showResultPageAfterTheEnd;
+            ShowResultPageAfterTheEnd = showResultPageAfterTheEnd;
         }
         public void SetShufflingQuestions(bool shufflingQuestions)
         {
@@ -102,7 +102,7 @@ namespace QuizMaker.Domain.Quiz
         }
         public void SetPlayMediaOnce(bool playMediaOnce)
         {
-            PlayMediaOnce=playMediaOnce;
+            PlayMediaOnce = playMediaOnce;
         }
         public void SetPassingMark(int? passingMark)
         {
