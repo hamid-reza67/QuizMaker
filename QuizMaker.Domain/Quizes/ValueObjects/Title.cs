@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace QuizMaker.Domain.Quizes.ValueObject
+namespace QuizMaker.Domain.Quizes.ValueObjects
 {
     public class Title : Value<Title>
     {

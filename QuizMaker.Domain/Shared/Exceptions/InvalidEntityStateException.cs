@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace QuizMaker.Domain.Shared
+namespace QuizMaker.Domain.Shared.Exceptions
 {
     public class InvalidEntityStateException : Exception
     {

@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static System.Net.Mime.MediaTypeNames;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 using QuizMaker.Domain.Questions;
-using QuizMaker.Domain.Quizes.ValueObject;
+using QuizMaker.Domain.Quizes.ValueObjects;
 using System.Diagnostics;
 using QuizMaker.Domain.Participants;
 using QuizMaker.Domain.Shared;
+using QuizMaker.Domain.Shared.Exceptions;
+using QuizMaker.Domain.Questions.Enumeration;
 
 namespace QuizMaker.Domain.Quizes
 {
@@ -18,18 +18,31 @@ namespace QuizMaker.Domain.Quizes
         public Guid Id { get; }
         public Guid OwnerId { get; }
         public Title Title { get; private set; }
+        public QuizDurationType DurationType { get; private set; }
         public Duration Duration { get; private set; }
-        public DateTime? StartDate { get; private set; }
-        public DateTime? EndDate { get; private set; }
-        public string StartTimeMessage { get; private set; }
-        public string EndTimeMessage { get; private set; }
+        public StartDate StartDate { get; private set; }
+        public EndDate EndDate { get; private set; }
+        public PassingMark PassingMark { get; private set; }
+        public string StartMessage { get; private set; }
+        public string EndMessage { get; private set; }
         public AllowedNumberOfTimesToParticipate AllowedNumberOfTimesToParticipate { get; private set; }
-        public bool ShowStatsAfterTheEnd { get; private set; }
-        public bool ShowResultPageAfterTheEnd { get; private set; }
         public bool ShufflingQuestions { get; private set; }
         public bool ShufflingQuestionOptions { get; private set; }
+        public bool DisplayDistinctQuestionsToEachParticipant { get; private set; }
+        public QuestionCount ComfortableQuestionCount { get; private set; }
+        public QuestionScore ComfortableQuestionScore { get; private set; }
+        public QuestionCount MediumQuestionCount { get; private set; }
+        public QuestionScore MediumQuestionScore { get; private set; }
+        public QuestionCount HardQuestionCount { get; private set; }
+        public QuestionScore HardQuestionScore { get; private set; }
         public bool PlayMediaOnce { get; private set; }
-        public PassingMark PassingMark { get; private set; }
+        public bool DisplayResultAfterTheEnd { get; private set; }
+        public bool AbilityToMoveBetweenQuestions { get; private set; }
+        public bool DisplayTheAnswerWhenNext { get; private set; }
+        public QuizDirection QuizDirection { get; private set; }
+
+        private List<QuestionType> _availableQuestionTypes = new();
+        public IReadOnlyList<QuestionType> AvailableQuestionTypes => _availableQuestionTypes.AsReadOnly();
         public QuizState State { get; private set; }
 
         private List<Question> _questions = new();
@@ -48,38 +61,59 @@ namespace QuizMaker.Domain.Quizes
 
         public void Update(
             Title title,
+            QuizDurationType durationType,
             Duration duration,
-            DateTime? startDate,
-            DateTime? endDate,
-            string startTimeMessage,
-            string endTimeMessage,
+            StartDate startDate,
+            EndDate endDate,
+            PassingMark passingMark,
+            string startMessage,
+            string endMessage,
             AllowedNumberOfTimesToParticipate allowedNumberOfTimesToParticipate,
-            bool showStatsAfterTheEnd,
-            bool showResultPageAfterTheEnd,
             bool shufflingQuestions,
             bool shufflingQuestionOptions,
+            bool displayDistinctQuestionsToEachParticipant,
+            QuestionCount comfortableQuestionCount,
+            QuestionScore comfortableQuestionScore,
+            QuestionCount mediumQuestionCount,
+            QuestionScore mediumQuestionScore,
+            QuestionCount hardQuestionCount,
+            QuestionScore hardQuestionScore,
             bool playMediaOnce,
-            PassingMark passingMark)
+            bool displayResultAfterTheEnd,
+            bool abilityToMoveBetweenQuestions,
+            bool displayTheAnswerWhenNext,
+            QuizDirection quizDirection
+            )
         {
-            EnsureValidState();
             Title = title;
+            DurationType = durationType;
             Duration = duration;
             StartDate = startDate;
             EndDate = endDate;
-            StartTimeMessage = startTimeMessage;
-            EndTimeMessage = endTimeMessage;
+            PassingMark = passingMark;
+            StartMessage = startMessage;
+            EndMessage = endMessage;
             AllowedNumberOfTimesToParticipate = allowedNumberOfTimesToParticipate;
-            ShowStatsAfterTheEnd = showStatsAfterTheEnd;
-            ShowResultPageAfterTheEnd = showResultPageAfterTheEnd;
             ShufflingQuestions = shufflingQuestions;
             ShufflingQuestionOptions = shufflingQuestionOptions;
+            DisplayDistinctQuestionsToEachParticipant = displayDistinctQuestionsToEachParticipant;
+            ComfortableQuestionCount = comfortableQuestionCount;
+            ComfortableQuestionScore = comfortableQuestionScore;
+            MediumQuestionCount = mediumQuestionCount;
+            MediumQuestionScore = mediumQuestionScore;
+            HardQuestionCount = hardQuestionCount;
+            HardQuestionScore = hardQuestionScore;
             PlayMediaOnce = playMediaOnce;
-            PassingMark = passingMark;
+            DisplayResultAfterTheEnd = displayResultAfterTheEnd;
+            AbilityToMoveBetweenQuestions = abilityToMoveBetweenQuestions;
+            DisplayTheAnswerWhenNext = displayTheAnswerWhenNext;
+            QuizDirection= quizDirection;
+            EnsureValidState();
         }
         public void Publish()
         {
-            EnsureValidState();
             State = QuizState.Active;
+            EnsureValidState();
         }
 
         private void EnsureValidState()
@@ -88,8 +122,8 @@ namespace QuizMaker.Domain.Quizes
                 State switch
                 {
                     QuizState.Active =>
-                        Questions.Count == 0
-                        && Participants.Count == 0,
+                        Questions.Any()
+                        && Participants.Any(),
                     _ => true
                 };
 
@@ -103,5 +137,16 @@ namespace QuizMaker.Domain.Quizes
     {
         Active,
         Inactive
+    }
+    public enum QuizDurationType
+    {
+        Fix,
+        Variable
+    }
+
+    public enum QuizDirection
+    {
+        RightToLeft,
+        LeftToRight
     }
 }

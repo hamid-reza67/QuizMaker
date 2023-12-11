@@ -1,30 +1,11 @@
 {
   "version": 3,
   "targets": {
-    "net7.0": {
-      "QuizMaker.Framework/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v7.0",
-        "compile": {
-          "bin/placeholder/QuizMaker.Framework.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/QuizMaker.Framework.dll": {}
-        }
-      }
-    }
+    "net7.0": {}
   },
-  "libraries": {
-    "QuizMaker.Framework/1.0.0": {
-      "type": "project",
-      "path": "../QuizMaker.Framework/QuizMaker.Framework.csproj",
-      "msbuildProject": "../QuizMaker.Framework/QuizMaker.Framework.csproj"
-    }
-  },
+  "libraries": {},
   "projectFileDependencyGroups": {
-    "net7.0": [
-      "QuizMaker.Framework >= 1.0.0"
-    ]
+    "net7.0": []
   },
   "packageFolders": {
     "C:\\Users\\hamid\\.nuget\\packages\\": {}
@@ -32,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\hamid\\source\\repos\\QuizMaker\\QuizMaker.Domain\\QuizMaker.Domain.csproj",
-      "projectName": "QuizMaker.Domain",
-      "projectPath": "C:\\Users\\hamid\\source\\repos\\QuizMaker\\QuizMaker.Domain\\QuizMaker.Domain.csproj",
+      "projectUniqueName": "C:\\Users\\hamid\\source\\repos\\QuizMaker\\QuizMaker.Framework\\QuizMaker.Framework.csproj",
+      "projectName": "QuizMaker.Framework",
+      "projectPath": "C:\\Users\\hamid\\source\\repos\\QuizMaker\\QuizMaker.Framework\\QuizMaker.Framework.csproj",
       "packagesPath": "C:\\Users\\hamid\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\hamid\\source\\repos\\QuizMaker\\QuizMaker.Domain\\obj\\",
+      "outputPath": "C:\\Users\\hamid\\source\\repos\\QuizMaker\\QuizMaker.Framework\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\hamid\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -52,11 +33,7 @@
       "frameworks": {
         "net7.0": {
           "targetAlias": "net7.0",
-          "projectReferences": {
-            "C:\\Users\\hamid\\source\\repos\\QuizMaker\\QuizMaker.Framework\\QuizMaker.Framework.csproj": {
-              "projectPath": "C:\\Users\\hamid\\source\\repos\\QuizMaker\\QuizMaker.Framework\\QuizMaker.Framework.csproj"
-            }
-          }
+          "projectReferences": {}
         }
       },
       "warningProperties": {
