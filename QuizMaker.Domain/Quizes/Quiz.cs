@@ -57,6 +57,7 @@ namespace QuizMaker.Domain.Quizes
             OwnerId = ownerId;
             Title = title;
             State = QuizState.Inactive;
+            EnsureValidState();
         }
 
         public void Update(
@@ -82,7 +83,8 @@ namespace QuizMaker.Domain.Quizes
             bool displayResultAfterTheEnd,
             bool abilityToMoveBetweenQuestions,
             bool displayTheAnswerWhenNext,
-            QuizDirection quizDirection
+            QuizDirection quizDirection,
+            IEnumerable<QuestionType> availableQuestionTypes
             )
         {
             Title = title;
@@ -107,7 +109,9 @@ namespace QuizMaker.Domain.Quizes
             DisplayResultAfterTheEnd = displayResultAfterTheEnd;
             AbilityToMoveBetweenQuestions = abilityToMoveBetweenQuestions;
             DisplayTheAnswerWhenNext = displayTheAnswerWhenNext;
-            QuizDirection= quizDirection;
+            QuizDirection = quizDirection;
+            _availableQuestionTypes = availableQuestionTypes.ToList();
+            State = QuizState.Inactive;
             EnsureValidState();
         }
         public void Publish()
@@ -118,7 +122,15 @@ namespace QuizMaker.Domain.Quizes
 
         private void EnsureValidState()
         {
+            bool t = true;
+            if (DurationType == QuizDurationType.Variable)
+            {
+                if (AbilityToMoveBetweenQuestions)
+                    t= false;
+            }
+
             var valid =
+                t &&
                 State switch
                 {
                     QuizState.Active =>

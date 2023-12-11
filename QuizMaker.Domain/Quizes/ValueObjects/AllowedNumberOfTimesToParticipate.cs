@@ -9,17 +9,17 @@ namespace QuizMaker.Domain.Quizes.ValueObjects
 {
     public class AllowedNumberOfTimesToParticipate : Value<AllowedNumberOfTimesToParticipate>
     {
-        public int? Value { get; private set; }
-        public AllowedNumberOfTimesToParticipate(int? value)
+        public int Value { get; private set; }
+        public AllowedNumberOfTimesToParticipate(int value)
         {
-            if (value == 0)
-                throw new ArgumentOutOfRangeException("Allowed number of times to participate cannot be 0");
+            if (value < 1)
+                throw new ArgumentOutOfRangeException("Allowed number of times to participate cannot be less than 1");
 
             if (value > 10)
                 throw new ArgumentOutOfRangeException("Allowed number of times to participate cannot be more than 10");
 
             Value = value;
         }
-        public static implicit operator int?(AllowedNumberOfTimesToParticipate allowedNumberOfTimesToParticipate) => allowedNumberOfTimesToParticipate.Value;
+        public static implicit operator int(AllowedNumberOfTimesToParticipate allowedNumberOfTimesToParticipate) => allowedNumberOfTimesToParticipate.Value;
     }
 }

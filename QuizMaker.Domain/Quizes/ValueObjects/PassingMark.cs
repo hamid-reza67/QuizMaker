@@ -9,8 +9,8 @@ namespace QuizMaker.Domain.Quizes.ValueObjects
 {
     public class PassingMark : Value<PassingMark>
     {
-        public int? Value { get; private set; }
-        public PassingMark(int? value)
+        public int Value { get; private set; }
+        public PassingMark(int value)
         {
             if (value < 0)
                 throw new ArgumentOutOfRangeException("Passing mark cannot be less than 0");
@@ -20,6 +20,6 @@ namespace QuizMaker.Domain.Quizes.ValueObjects
             Value = value;
         }
 
-        public static implicit operator int?(PassingMark passingMark) =>passingMark.Value;
+        public static implicit operator int(PassingMark passingMark) =>passingMark.Value;
     }
 }
