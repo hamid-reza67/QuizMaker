@@ -20,8 +20,7 @@ namespace QuizMaker.Domain.Quizes
         public Title Title { get; private set; }
         public QuizDurationType DurationType { get; private set; }
         public Duration Duration { get; private set; }
-        public StartDate StartDate { get; private set; }
-        public EndDate EndDate { get; private set; }
+        public DateRange DateRange { get; private set; }
         public PassingMark PassingMark { get; private set; }
         public string StartMessage { get; private set; }
         public string EndMessage { get; private set; }
@@ -64,8 +63,7 @@ namespace QuizMaker.Domain.Quizes
             Title title,
             QuizDurationType durationType,
             Duration duration,
-            StartDate startDate,
-            EndDate endDate,
+            DateRange dateRange,
             PassingMark passingMark,
             string startMessage,
             string endMessage,
@@ -90,8 +88,7 @@ namespace QuizMaker.Domain.Quizes
             Title = title;
             DurationType = durationType;
             Duration = duration;
-            StartDate = startDate;
-            EndDate = endDate;
+            DateRange = dateRange;
             PassingMark = passingMark;
             StartMessage = startMessage;
             EndMessage = endMessage;
