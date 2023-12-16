@@ -116,6 +116,20 @@ namespace QuizMaker.Domain.Quizes
             State = QuizState.Active;
             EnsureValidState();
         }
+        public void AddQuestion(Guid quizId,
+            HardshipLevel hardshipLevel,
+            Score questionScore,
+            TextEditor participateTips,
+            TextEditor resultTips,
+            QuestionType questionType,
+            object questionFeature)
+        {
+            if (!AvailableQuestionTypes.Contains(questionType))
+                throw new ArgumentException("Quiz does not have this question type.");
+
+            _questions.Add(new Question(Id, hardshipLevel, questionScore, participateTips, resultTips, questionType, questionFeature));
+            EnsureValidState();
+        }
 
         private void EnsureValidState()
         {
