@@ -39,10 +39,10 @@ namespace QuizMaker.Domain.Quizes
         public bool AbilityToMoveBetweenQuestions { get; private set; }
         public bool DisplayTheAnswerWhenNext { get; private set; }
         public QuizDirection QuizDirection { get; private set; }
+        public QuizState State { get; private set; }
 
         private List<QuestionType> _availableQuestionTypes = new();
         public IReadOnlyList<QuestionType> AvailableQuestionTypes => _availableQuestionTypes.AsReadOnly();
-        public QuizState State { get; private set; }
 
         private List<Question> _questions = new();
         public IReadOnlyList<Question> Questions => _questions.AsReadOnly();
