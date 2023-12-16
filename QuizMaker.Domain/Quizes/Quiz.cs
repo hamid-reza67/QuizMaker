@@ -22,8 +22,8 @@ namespace QuizMaker.Domain.Quizes
         public Duration Duration { get; private set; }
         public DateRange DateRange { get; private set; }
         public Score PassingMark { get; private set; }
-        public string StartMessage { get; private set; }
-        public string EndMessage { get; private set; }
+        public TextEditor StartMessage { get; private set; }
+        public TextEditor EndMessage { get; private set; }
         public AllowedNumberOfTimesToParticipate AllowedNumberOfTimesToParticipate { get; private set; }
         public bool ShufflingQuestions { get; private set; }
         public bool ShufflingQuestionOptions { get; private set; }
@@ -65,8 +65,8 @@ namespace QuizMaker.Domain.Quizes
             Duration duration,
             DateRange dateRange,
             Score passingMark,
-            string startMessage,
-            string endMessage,
+            TextEditor startMessage,
+            TextEditor endMessage,
             AllowedNumberOfTimesToParticipate allowedNumberOfTimesToParticipate,
             bool shufflingQuestions,
             bool shufflingQuestionOptions,
