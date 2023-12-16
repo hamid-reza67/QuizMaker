@@ -7,9 +7,9 @@ using QuizMaker.Domain.Questions;
 using QuizMaker.Domain.Quizes.ValueObjects;
 using System.Diagnostics;
 using QuizMaker.Domain.Participants;
-using QuizMaker.Domain.Shared;
 using QuizMaker.Domain.Shared.Exceptions;
 using QuizMaker.Domain.Questions.Enumeration;
+using QuizMaker.Domain.Shared.ValueObjects;
 
 namespace QuizMaker.Domain.Quizes
 {
@@ -21,7 +21,7 @@ namespace QuizMaker.Domain.Quizes
         public QuizDurationType DurationType { get; private set; }
         public Duration Duration { get; private set; }
         public DateRange DateRange { get; private set; }
-        public PassingMark PassingMark { get; private set; }
+        public Score PassingMark { get; private set; }
         public string StartMessage { get; private set; }
         public string EndMessage { get; private set; }
         public AllowedNumberOfTimesToParticipate AllowedNumberOfTimesToParticipate { get; private set; }
@@ -64,7 +64,7 @@ namespace QuizMaker.Domain.Quizes
             QuizDurationType durationType,
             Duration duration,
             DateRange dateRange,
-            PassingMark passingMark,
+            Score passingMark,
             string startMessage,
             string endMessage,
             AllowedNumberOfTimesToParticipate allowedNumberOfTimesToParticipate,
