@@ -84,33 +84,33 @@ namespace QuizMaker.Domain.Quizes
             QuizDirection quizDirection,
             IEnumerable<QuestionType> availableQuestionTypes
             )
-        {
-            Title = title;
-            DurationType = durationType;
-            Duration = duration;
-            DateRange = dateRange;
-            PassingMark = passingMark;
-            StartMessage = startMessage;
-            EndMessage = endMessage;
-            AllowedNumberOfTimesToParticipate = allowedNumberOfTimesToParticipate;
-            ShufflingQuestions = shufflingQuestions;
-            ShufflingQuestionOptions = shufflingQuestionOptions;
-            DisplayDistinctQuestionsToEachParticipant = displayDistinctQuestionsToEachParticipant;
-            ComfortableQuestionCount = comfortableQuestionCount;
-            ComfortableQuestionScore = comfortableQuestionScore;
-            MediumQuestionCount = mediumQuestionCount;
-            MediumQuestionScore = mediumQuestionScore;
-            HardQuestionCount = hardQuestionCount;
-            HardQuestionScore = hardQuestionScore;
-            PlayMediaOnce = playMediaOnce;
-            DisplayResultAfterTheEnd = displayResultAfterTheEnd;
-            AbilityToMoveBetweenQuestions = abilityToMoveBetweenQuestions;
-            DisplayTheAnswerWhenNext = displayTheAnswerWhenNext;
-            QuizDirection = quizDirection;
-            _availableQuestionTypes = availableQuestionTypes.ToList();
-            State = QuizState.Inactive;
-            EnsureValidState();
-        }
+            {
+                Title = title;
+                DurationType = durationType;
+                Duration = duration;
+                DateRange = dateRange;
+                PassingMark = passingMark;
+                StartMessage = startMessage;
+                EndMessage = endMessage;
+                AllowedNumberOfTimesToParticipate = allowedNumberOfTimesToParticipate;
+                ShufflingQuestions = shufflingQuestions;
+                ShufflingQuestionOptions = shufflingQuestionOptions;
+                DisplayDistinctQuestionsToEachParticipant = displayDistinctQuestionsToEachParticipant;
+                ComfortableQuestionCount = comfortableQuestionCount;
+                ComfortableQuestionScore = comfortableQuestionScore;
+                MediumQuestionCount = mediumQuestionCount;
+                MediumQuestionScore = mediumQuestionScore;
+                HardQuestionCount = hardQuestionCount;
+                HardQuestionScore = hardQuestionScore;
+                PlayMediaOnce = playMediaOnce;
+                DisplayResultAfterTheEnd = displayResultAfterTheEnd;
+                AbilityToMoveBetweenQuestions = abilityToMoveBetweenQuestions;
+                DisplayTheAnswerWhenNext = displayTheAnswerWhenNext;
+                QuizDirection = quizDirection;
+                _availableQuestionTypes = availableQuestionTypes.ToList();
+                State = QuizState.Inactive;
+                EnsureValidState();
+            }
         public void Publish()
         {
             State = QuizState.Active;
